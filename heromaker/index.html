@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heromaker</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav>
+        <img src="heromaker3.svg" alt="Logo do site" class="logo-do-site">
+        <a href="perfil.html" class="perfil-link" target="_blank" rel="noopener noreferrer">
+  <img src="perfil.svg" alt="Perfil" class="perfil">
+</a>
+
+        
+    </nav>
+
+    <main>
+        <div class="form-container">
+    <h2>Ficha de Personagem</h2>
+    <form>
+        <label for="nome">Nome do Personagem</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex: Tharion, o Bravo" required>
+
+        <label for="nivel">Nível</label>
+        <input type="number" id="nivel" name="nivel" min="1" max="20" placeholder="1" required>
+
+        <label for="raca">Raça</label>
+        <select id="raca" name="raca" required>
+            <option value="">Selecione...</option>
+            <option value="Humano">Humano</option>
+            <option value="Elfo">Elfo</option>
+            <option value="Anão">Anão</option>
+            <option value="Orc">Orc</option>
+            <option value="Halfling">Halfling</option>
+        </select>
+
+        <label for="classe">Classe</label>
+        <select id="classe" name="classe" required>
+            <option value="">Selecione...</option>
+            <option value="Guerreiro">Guerreiro</option>
+            <option value="Mago">Mago</option>
+            <option value="Ladino">Ladino</option>
+            <option value="Clérigo">Clérigo</option>
+            <option value="Bárbaro">Bárbaro</option>
+        </select>
+
+        <!-- Container para os botões lado a lado -->
+        <div class="button-group">
+            <button type="button" class="btn-auto">Criar Personagem Aleatoriamente</button>
+            <button type="submit">Criar Personagem</button>
+        </div>
+    </form>
+</div>
+
+    </main>
+</body>
+</html>
