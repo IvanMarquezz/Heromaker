@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="src/css/cadastro.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <img src="src/imagens/heromaker2.svg" alt="Logo do site" class="logo-do-site">
+  </nav>
+
+  <!-- Caixa de cadastro -->
+  <div class="form-container">
+    <h2>CADASTRO</h2>
+    <form action="#" method="POST">
+      
+      <!-- Linha Nome + Email -->
+      <div class="input-duplo">
+        <div>
+          <label for="nome">Nome de Usuário</label>
+          <input type="text" id="nome" name="nome" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+
+      <!-- Linha Senha + Confirmar -->
+      <div class="input-duplo">
+        <div>
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" required>
+        </div>
+        <div>
+          <label for="confirmar-senha">Confirmar Senha</label>
+          <input type="password" id="confirmar-senha" name="confirmar-senha" required>
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <div class="button-group">
+        <button type="button" class="btn-voltar" onclick="window.location.href='login.html'">Voltar</button>
+        <button type="submit" class="btn-cadastrar">Realizar Cadastro</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
