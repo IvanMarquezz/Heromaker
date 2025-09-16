@@ -7,17 +7,14 @@
   <link rel="stylesheet" href="src/css/cadastro.css">
 </head>
 <body>
-  <!-- Navbar -->
   <nav>
     <img src="src/imagens/heromaker2.svg" alt="Logo do site" class="logo-do-site">
   </nav>
 
-  <!-- Caixa de cadastro -->
   <div class="form-container">
     <h2>CADASTRO</h2>
-    <form action="#" method="POST">
+    <form id="cadastroForm">
       
-      <!-- Linha Nome + Email -->
       <div class="input-duplo">
         <div>
           <label for="nome">Nome de Usuário</label>
@@ -29,7 +26,6 @@
         </div>
       </div>
 
-      <!-- Linha Senha + Confirmar -->
       <div class="input-duplo">
         <div>
           <label for="senha">Senha</label>
@@ -41,12 +37,15 @@
         </div>
       </div>
 
-      <!-- Botões -->
       <div class="button-group">
         <button type="button" class="btn-voltar" onclick="window.location.href='login.html'">Voltar</button>
         <button type="submit" class="btn-cadastrar">Realizar Cadastro</button>
       </div>
     </form>
+    
+    <p id="cadastro-message"></p>
+    
   </div>
+  <script src="cadastro.js"></script>
 </body>
 </html>
