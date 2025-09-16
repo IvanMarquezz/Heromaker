@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heromaker</title>
     <link rel="stylesheet" href="src/css/index.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <nav>
@@ -19,15 +21,15 @@
             <h2>FICHA DE PERSONAGEM</h2>
             <form>
                 <div class="form-grid">
-                    <!-- Foto -->
-                    <div class="foto-container">
-                        <div class="foto-placeholder"></div>
-                        <p>ADICIONE UMA FOTO</p>
+                    
+                    <div id="foto-container-clicavel" class="foto-container">
+                        <input type="file" id="foto-upload" accept="image/*" style="display: none;">
+                        
+                        <img id="personagem-imagem" src="" alt="Foto do personagem" class="foto-placeholder">
+                        
+                        <p id="texto-adicionar-foto">ADICIONE UMA FOTO</p>
                     </div>
-
-                    <!-- Campos -->
                     <div class="inputs-container">
-                        <!-- Nome + Gênero -->
                         <div class="input-duplo">
                             <div>
                                 <label for="nome">Nome do Personagem</label>
@@ -39,7 +41,6 @@
                             </div>
                         </div>
 
-                        <!-- Nível + Raça + Classe -->
                         <div class="input-triplo">
                             <div>
                                 <label for="nivel">Nível</label>
@@ -55,7 +56,6 @@
                             </div>
                         </div>
 
-                        <!-- Atributos -->
                         <div class="atributos">
                             <div>
                                 <label for="forca">Força</label>
@@ -81,7 +81,6 @@
                     </div>
                 </div>
 
-                <!-- Botões -->
                 <div class="button-group">
                     <button type="button" class="btn-auto">Preencher Automaticamente</button>
                     <button type="submit">Gerar Ficha</button>
@@ -89,5 +88,9 @@
             </form>
         </div>
     </main>
+
+    <script src="index.js"></script>
 </body>
 </html>
+</html>
+
