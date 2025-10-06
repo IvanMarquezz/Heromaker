@@ -6,15 +6,18 @@
     <title>Heromaker</title>
     <link rel="stylesheet" href="src/css/index.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
+    <!-- ▼▼▼ SEÇÃO DA NAVBAR ATUALIZADA ▼▼▼ -->
     <nav>
         <img src="src/imagens/heromaker2.svg" alt="Logo do site" class="logo-do-site">
-        <a href="perfil.html" class="perfil-link" target="_blank" rel="noopener noreferrer">
-            <img src="src/imagens/perfil.svg" alt="Perfil" class="perfil">
+        <a href="perfil.html" class="perfil-link">
+            <!-- A imagem de perfil agora tem um ID para ser controlada pelo JS -->
+            <img id="nav-profile-pic" src="src/imagens/perfil.svg" alt="Perfil" class="perfil">
         </a>
     </nav>
+    <!-- ▲▲▲ FIM DA SEÇÃO ATUALIZADA ▲▲▲ -->
 
     <main>
         <div class="form-container">
