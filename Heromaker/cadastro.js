@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // elementos do formulario do cadastro
     const cadastroForm = document.querySelector('.form-container form'); 
