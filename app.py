@@ -1,33 +1,38 @@
-from flask import Flask, request, jsonify #Cria o server web, pega os dados ebiados pelo usuario e tranforma eles em JSON
-from flask_cors import CORS #Permite que o servidor aceite requisições de outros sites ou apps
-import uuid #Faz IDs unicos pras fichas
-import random #Gera números e escolhas random
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import uuid
+import random
 
-#Cria o app e ativa o CORS pro server funcionar com frontend
 app = Flask(__name__)
 CORS(app)
 
+# --- ESTRUTURA DE DADOS ATUALIZADA ---
+# Adicionado o campo "foto_perfil" para cada usuário
 USERS = {
     "luigi@email.com": {
         "senha": "luigi123", 
         "nome": "luigi",
+        "foto_perfil": "", # Armazenará a imagem em Base64
         "fichas": [] 
     }
 }
 
-#Recebe email e senha do usuário
 @app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
     email = data.get("email")
     senha = data.get("senha")
     if email in USERS and USERS[email]["senha"] == senha:
-        return jsonify({"success": True, "message": "Login válido", "nome": USERS[email]["nome"]})
+        user_data = USERS[email]
+        return jsonify({
+            "success": True, 
+            "message": "Login válido", 
+            "nome": user_data["nome"],
+            "foto_perfil": user_data.get("foto_perfil", "") # Retorna a foto no login
+        })
     else:
         return jsonify({"success": False, "message": "E-mail ou senha incorretos"}), 401
 
-
-#Recebe nome, email e senha
 @app.route("/cadastrar", methods=["POST"])
 def cadastrar():
     data = request.get_json()
@@ -36,11 +41,27 @@ def cadastrar():
     senha = data.get("senha")
     if email in USERS:
         return jsonify({"success": False, "message": "Este e-mail já está cadastrado"}), 409
-    USERS[email] = {"senha": senha, "nome": nome, "fichas": []}
+    
+    # Inicializa a foto de perfil como vazia para novos usuários
+    USERS[email] = {"senha": senha, "nome": nome, "foto_perfil": "", "fichas": []}
     return jsonify({"success": True, "message": "Cadastro realizado com sucesso"})
 
+# --- NOVA ROTA PARA SALVAR A FOTO DE PERFIL ---
+@app.route("/salvar-foto-perfil", methods=["POST"])
+def salvar_foto_perfil():
+    data = request.get_json()
+    email = data.get("email")
+    foto_data = data.get("foto_base64")
 
-#Recebe email e os dados da ficha
+    if email in USERS:
+        USERS[email]["foto_perfil"] = foto_data
+        print(f"Foto de perfil de {email} atualizada.") # Debug no terminal
+        return jsonify({"success": True, "message": "Foto de perfil salva com sucesso."})
+    else:
+        return jsonify({"success": False, "message": "Usuário não encontrado."}), 404
+
+
+# --- Rotas de Fichas (permanecem as mesmas) ---
 @app.route("/salvar-ficha", methods=["POST"])
 def salvar_ficha():
     data = request.get_json()
@@ -60,14 +81,12 @@ def salvar_ficha():
         USERS[email_usuario]["fichas"].append(ficha_data)
         return jsonify({"success": True, "message": "Ficha salva com sucesso", "ficha": ficha_data})
 
-#Busca todas as fichas de um email específico
 @app.route("/fichas/<email>", methods=["GET"])
 def get_fichas(email):
     if email in USERS:
         return jsonify({"success": True, "fichas": USERS[email]["fichas"]})
     return jsonify({"success": False, "message": "Usuário não encontrado"}), 404
 
-#Busca uma ficha específica pelo ID
 @app.route("/ficha/<ficha_id>", methods=["GET"])
 def get_ficha(ficha_id):
     for user_data in USERS.values():
@@ -76,8 +95,6 @@ def get_ficha(ficha_id):
                 return jsonify({"success": True, "ficha": ficha})
     return jsonify({"success": False, "message": "Ficha não encontrada"}), 404
 
-
-# --- IA ---
 @app.route("/gerar-ficha-ia", methods=["GET"])
 def gerar_ficha_ia():
     generos = ["homem", "mulher"]
@@ -91,8 +108,6 @@ def gerar_ficha_ia():
         "classe": random.choice(classes)
     }
 
-    atributos_valores = []
-   
     if random.random() < 0.25:
         atributo_max = random.choice(nomes_atributos)
         for nome in nomes_atributos:
@@ -106,6 +121,6 @@ def gerar_ficha_ia():
 
     return jsonify({"success": True, "ficha": ficha_gerada})
 
-
 if __name__ == "__main__":
     app.run(debug=True)
+
