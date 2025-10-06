@@ -1,29 +1,26 @@
+// login.js
+
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. SELEÇÃO DE TODOS OS ELEMENTOS ---
+    // --- SELEÇÃO DE TODOS OS ELEMENTOS ---
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email-input');
     const passwordInput = document.getElementById('senha-input');
     const loginMessage = document.getElementById('login-message');
     const createAccountButton = document.getElementById('create-account-button');
 
-    // -sessão cria conta
-    // Este listener cuida apenas do redirecionamento para a página de cadastro.
+    // --- EVENTO PARA O BOTÃO "CRIAR CONTA" ---
     createAccountButton.addEventListener('click', () => {
         window.location.href = 'cadastro.html';
     });
 
-    // alinha as informações 
+    // --- EVENTO PARA O FORMULÁRIO DE LOGIN ---
     loginForm.addEventListener('submit', async (e) => {
-        // Impede que a página recarregue
         e.preventDefault(); 
 
         const email = emailInput.value;
         const senha = passwordInput.value;
-
-        // Limpa mensagens antigas
         loginMessage.textContent = '';
 
-        //comunicação com o backend
         try {
             const response = await fetch("http://127.0.0.1:5000/login", {
                 method: "POST",
@@ -37,8 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginMessage.textContent = "✅ Login realizado com sucesso!";
                 loginMessage.style.color = "green";
 
-                sessionStorage.setItem("usuario", email)
-                
+                // --- ATUALIZAÇÃO IMPORTANTE ---
+                // Salva o e-mail, nome e a foto do usuário na sessão do navegador
+                sessionStorage.setItem("usuario", email);
+                sessionStorage.setItem("userName", result.nome);
+                sessionStorage.setItem("userPhoto", result.foto_perfil);
+
                 setTimeout(() => {
                     window.location.href = "index.html";
                 }, 1000);
@@ -53,3 +54,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
