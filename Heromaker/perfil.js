@@ -1,61 +1,108 @@
 // perfil.js
 
-// A função principal é 'async' para podermos usar 'await' na chamada da API
-async function carregarFichas() {
-    // 1. Pega o usuário logado do sessionStorage
-    const usuarioLogado = sessionStorage.getItem('usuario');
+// Garante que o código só vai rodar depois que o HTML da página estiver pronto.
+document.addEventListener('DOMContentLoaded', async () => {
+    
+    // --- 1. VERIFICAÇÃO DE LOGIN E DADOS DO USUÁRIO ---
+    const usuarioLogadoEmail = sessionStorage.getItem('usuario');
+    const nomeUsuario = sessionStorage.getItem('userName') || usuarioLogadoEmail;
+    const fotoPerfilData = sessionStorage.getItem('userPhoto'); // Pega a foto salva na sessão
 
-    // 2. Segurança: se não houver usuário, redireciona para o login
-    if (!usuarioLogado) {
+    // Se não houver usuário logado, redireciona para a tela de login.
+    if (!usuarioLogadoEmail) {
         alert("Acesso negado. Por favor, faça o login.");
         window.location.href = 'login.html';
-        return; // Para a execução do script
+        return; // Para a execução do script.
     }
 
-    // 3. Seleciona o container onde as fichas serão exibidas
-    const container = document.getElementById('lista-fichas-container');
-    container.innerHTML = '<p>Carregando fichas...</p>'; // Mensagem de feedback inicial
+    // --- 2. SELEÇÃO DOS ELEMENTOS DO HTML ---
+    const welcomeMessage = document.getElementById('welcome-message');
+    const fichasContainer = document.getElementById('fichas-container');
+    const btnEditarFoto = document.getElementById('btn-editar-foto');
+    const fotoPerfilImg = document.getElementById('foto-perfil-img');
+    const fotoUploadInput = document.getElementById('foto-upload-input');
 
+    // --- 3. ATUALIZA A MENSAGEM DE BOAS-VINDAS E A FOTO DE PERFIL ---
+    if (welcomeMessage && nomeUsuario) {
+        welcomeMessage.textContent = `SEJA BEM-VINDO, ${nomeUsuario.toUpperCase()}! AQUI ESTÃO SUAS FICHAS`;
+    }
+    
+    // Mostra a foto salva; se não houver, o 'src' fica vazio e o CSS mostra o placeholder cinza.
+    if (fotoPerfilImg && fotoPerfilData) {
+        fotoPerfilImg.src = fotoPerfilData;
+    }
+
+    // --- 4. FUNCIONALIDADE DE EDITAR FOTO ---
+    // O botão de editar aciona o clique no input de arquivo escondido.
+    btnEditarFoto.addEventListener('click', () => {
+        fotoUploadInput.click();
+    });
+
+    // Quando o usuário escolhe um novo arquivo de imagem...
+    fotoUploadInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // Usa a API FileReader para converter a imagem em um formato (Base64) que pode ser salvo.
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async () => {
+            const base64String = reader.result;
+
+            // Mostra a prévia da nova imagem imediatamente.
+            fotoPerfilImg.src = base64String;
+
+            // Salva a nova foto na sessão do navegador para acesso rápido.
+            sessionStorage.setItem('userPhoto', base64String);
+            
+            // Envia a nova foto para o backend para salvar permanentemente na conta.
+            try {
+                const response = await fetch('http://127.0.0.1:5000/salvar-foto-perfil', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: usuarioLogadoEmail, foto_base64: base64String })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    console.log("Foto de perfil salva no servidor com sucesso.");
+                } else {
+                    alert("Erro ao salvar a foto de perfil no servidor.");
+                }
+            } catch (err) {
+                console.error("Erro de conexão ao salvar foto:", err);
+                alert("Não foi possível salvar a foto. Verifique a conexão com o servidor.");
+            }
+        };
+    });
+    
+    // --- 5. BUSCA E EXIBE AS FICHAS SALVAS ---
     try {
-        // 4. Faz a chamada à API para buscar as fichas do usuário logado
-        const response = await fetch(`http://127.0.0.1:5000/fichas/${usuarioLogado}`);
+        fichasContainer.innerHTML = '<span>Carregando suas fichas...</span>';
+
+        const response = await fetch(`http://127.0.0.1:5000/fichas/${usuarioLogadoEmail}`);
         const data = await response.json();
+        
+        fichasContainer.innerHTML = '';
 
-        // Limpa a mensagem "Carregando..."
-        container.innerHTML = '';
-
-        // 5. Verifica se a busca foi bem-sucedida e se existem fichas
         if (data.success && data.fichas.length > 0) {
-            // 6. Para cada ficha retornada, cria um card na tela
             data.fichas.forEach(ficha => {
-                const card = document.createElement('div');
-                card.className = 'ficha-card'; // Para você poder estilizar no CSS
-                
-                // Preenche o card com as informações da ficha
-                card.innerHTML = `
-                    <h3>${ficha.nome || 'Personagem sem nome'}</h3> 
-                    <p>${ficha.classe || 'Sem classe'}, Nível ${ficha.nivel || 1}</p>
+                const fichaElement = document.createElement('div');
+                fichaElement.className = 'ficha';
+                fichaElement.innerHTML = `
+                    <div class="icone-ficha"></div>
+                    <span>${ficha.nome || 'Ficha Sem Nome'}</span>
                 `;
-                
-                // 7. Adiciona o evento de clique para redirecionar para a edição
-                card.addEventListener('click', () => {
-                    // Redireciona para a página de edição, passando o ID da ficha na URL
+                fichaElement.addEventListener('click', () => {
                     window.location.href = `editar-ficha.html?id=${ficha.id}`;
                 });
-
-                // Adiciona o card criado ao container na página
-                container.appendChild(card);
+                fichasContainer.appendChild(fichaElement);
             });
         } else {
-            // Se não houver fichas, exibe uma mensagem
-            container.innerHTML = '<p>Você ainda não criou nenhuma ficha. Clique em "Criar Nova Ficha" para começar!</p>';
+            fichasContainer.innerHTML = '<span>Você ainda não tem nenhuma ficha salva. Volte e crie uma!</span>';
         }
     } catch (error) {
-        // Se houver um erro de conexão com o servidor
-        console.error('Erro ao buscar fichas:', error);
-        container.innerHTML = '<p>Ocorreu um erro ao carregar suas fichas. Verifique se o servidor está rodando.</p>';
+        console.error('Erro ao carregar as fichas:', error);
+        fichasContainer.innerHTML = '<span>Ocorreu um erro ao buscar suas fichas. O servidor pode estar offline.</span>';
     }
-}
+});
 
-// Garante que o script só vai rodar depois que o HTML da página estiver pronto
-document.addEventListener('DOMContentLoaded', carregarFichas);
