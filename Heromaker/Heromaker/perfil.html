@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - Heromaker</title>
+  <link rel="stylesheet" href="src/css/perfil.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <img src="src/imagens/heromaker2.svg" alt="Logo do site" class="logo-do-site">
+  </nav>
+
+  <!-- Caixa do Painel -->
+  <div class="painel-container">
+    <!-- O JavaScript irá inserir o nome do usuário aqui -->
+    <h2 id="welcome-message">SEJA BEM-VINDO! AQUI ESTÃO SUAS FICHAS</h2>
+    
+    <div class="painel-conteudo">
+      
+      <!-- Coluna Esquerda (Perfil) - SEÇÃO ATUALIZADA -->
+      <div class="perfil">
+        <!-- Input escondido para o upload de arquivo -->
+        <input type="file" id="foto-upload-input" accept="image/*" style="display: none;">
+        
+        <!-- A imagem de perfil real, com um ID para ser controlada pelo JS -->
+        <img id="foto-perfil-img" class="foto-perfil" alt="Foto de Perfil">
+        
+        <button id="btn-editar-foto" class="btn-editar">EDITAR FOTO DE PERFIL</button>
+        <!-- Função para voltar à tela de criação de ficha -->
+        <button class="btn-voltar" onclick="window.location.href='index.html'">VOLTAR</button>
+      </div>
+
+      <!-- Coluna Direita (Fichas Salvas) -->
+      <div id="fichas-container" class="fichas">
+        <!-- O JavaScript irá inserir as fichas salvas aqui -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Conecta com o script que fará a página funcionar -->
+  <script src="perfil.js"></script>
+</body>
+</html>
+
+

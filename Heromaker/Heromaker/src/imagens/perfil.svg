@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2020 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="188px" height="188px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2.86 2.86"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil3 {fill:none}
+    .fil1 {fill:#8C8C8C}
+    .fil2 {fill:#E6E6E6}
+    .fil0 {fill:url(#id2)}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M1.43 0.15c0.71,0 1.28,0.57 1.28,1.28 0,0.71 -0.57,1.28 -1.28,1.28 -0.71,0 -1.28,-0.57 -1.28,-1.28 0,-0.71 0.57,-1.28 1.28,-1.28z"/>
+   </clipPath>
+    <clipPath id="id1">
+     <path d="M1.43 0.15c0.71,0 1.28,0.57 1.28,1.28 0,0.71 -0.57,1.28 -1.28,1.28 -0.71,0 -1.28,-0.57 -1.28,-1.28 0,-0.71 0.57,-1.28 1.28,-1.28z"/>
+    </clipPath>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" x1="1.43" y1="0" x2="1.43" y2="2.86">
+   <stop offset="0" style="stop-opacity:1; stop-color:white"/>
+   <stop offset="0.0588235" style="stop-opacity:1; stop-color:#B2B2B2"/>
+   <stop offset="0.258824" style="stop-opacity:1; stop-color:#7D7D7D"/>
+   <stop offset="0.411765" style="stop-opacity:1; stop-color:#ABABAB"/>
+   <stop offset="0.509804" style="stop-opacity:1; stop-color:#E6E6E6"/>
+   <stop offset="0.568627" style="stop-opacity:1; stop-color:#363636"/>
+   <stop offset="0.631373" style="stop-opacity:1; stop-color:#7D7D7D"/>
+   <stop offset="0.729412" style="stop-opacity:1; stop-color:#9C9C9C"/>
+   <stop offset="0.858824" style="stop-opacity:1; stop-color:#D4D4D4"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#8C8C8C"/>
+  </linearGradient>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <circle class="fil0" cx="1.43" cy="1.43" r="1.43"/>
+  <path class="fil1" d="M1.43 0.15c0.71,0 1.28,0.57 1.28,1.28 0,0.71 -0.57,1.28 -1.28,1.28 -0.71,0 -1.28,-0.57 -1.28,-1.28 0,-0.71 0.57,-1.28 1.28,-1.28z"/>
+  <g style="clip-path:url(#id0)">
+   <g id="_1894426272848">
+    <circle class="fil2" cx="1.43" cy="1.02" r="0.5"/>
+    <circle class="fil2" cx="1.43" cy="2.52" r="0.91"/>
+   </g>
+  </g>
+  <path class="fil3" d="M1.43 0.15c0.71,0 1.28,0.57 1.28,1.28 0,0.71 -0.57,1.28 -1.28,1.28 -0.71,0 -1.28,-0.57 -1.28,-1.28 0,-0.71 0.57,-1.28 1.28,-1.28z"/>
+  <g id="_1894426284512">
+   <g style="clip-path:url(#id1)">
+    <image x="0.15" y="0.15" width="2.56" height="2.56" xlink:href="perfil_Images\perfil_ImgID1.png"/>
+   </g>
+  </g>
+ </g>
+</svg>
