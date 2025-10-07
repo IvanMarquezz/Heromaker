@@ -10,6 +10,25 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Partículas flutuantes */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(182, 1, 1, 0.3);
+    border-radius: 50%;
+    animation: float 15s infinite linear;
 }
 
 /* Navbar */
@@ -19,41 +38,49 @@ nav {
     background: linear-gradient(180deg, #b60101, #750000);
     padding: 20px;
     width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    animation: navSlideIn 0.8s ease-out;
 }
+
 img.logo-do-site {
     height: 80px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    animation: logoPulse 3s infinite ease-in-out;
 }
 
 /* Caixa do formulário */
 .form-container {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(42, 42, 42, 0.9); /* fundo levemente transparente */
-    padding: 20px 30px;
-    border-radius: 10px;
+    background-color: rgba(30, 30, 30, 0.95);
+    padding: 40px;
+    border-radius: 12px;
     width: 700px;
-    max-width: 1000px;
-    min-width: 300px;
-    height: auto;         
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    margin: 105px auto; /* centraliza horizontalmente e dá espaço em cima */
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    margin: 40px auto;
+    text-align: center;
+    animation: formFadeIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Título */
 .form-container h2 {
     font-size: 2rem;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ffffff
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(182, 1, 1, 0.5);
 }
 
 /* Labels */
 .form-container label {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    text-align: left;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Inputs */
@@ -61,31 +88,76 @@ img.logo-do-site {
     font-size: 1.1rem;
     font-weight: bold;
     width: 100%;
-    padding: 12px;
-    border-radius: 5px;
+    padding: 14px;
+    border-radius: 8px;
     border: none;
     outline: none;
-    background-color: #3a3a3a;
-    color: #f5f5f5;
+    background-color: #d9d9d9;
+    color: #000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-container input:focus {
+    box-shadow: 0 0 0 2px #b60101, 0 0 15px rgba(182, 1, 1, 0.4);
+    transform: translateY(-2px);
+    background-color: #e8e8e8;
+}
+
+.form-container input:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Botões */
 .button-group {
     display: flex;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 25px;
+    margin-top: 30px;
 }
 
 .button-group button {
     flex: 1;
-    padding: 12px;
+    padding: 14px;
     font-size: 1rem;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
-    min-width: 150px; /* 🔥 largura mínima pra padronizar */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de onda nos botões */
+.button-group button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.button-group button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Botão Criar Conta */
+.btn-voltar {
+    background-color: #1b0a0a;
+    color: white;
+}
+
+.btn-voltar:hover {
+    background-color: #3a0f0f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Botão Logar */
@@ -96,14 +168,129 @@ img.logo-do-site {
 
 .btn-cadastrar:hover {
     background-color: #750000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(182, 1, 1, 0.5);
 }
 
-/* Botão Criar Conta */
-.btn-voltar {
-    background-color: #200606;
-    color: white;
+/* ========== ANIMAÇÕES ========== */
+
+/* Animação de entrada da navbar */
+@keyframes navSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.btn-voltar:hover {
-    background-color: hsl(0, 71%, 45%);
+/* Animação de pulsação do logo */
+@keyframes logoPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animação de entrada do formulário */
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação das partículas flutuantes */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Animação de loading para o botão */
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Estilo para quando o botão estiver carregando */
+.btn-loading {
+    background: linear-gradient(90deg, #b60101, #750000, #b60101) !important;
+    background-size: 200% 100% !important;
+    animation: loading 1.5s infinite !important;
+}
+
+/* Efeito de sucesso no login */
+@keyframes loginSuccess {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(46, 125, 50, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+    }
+}
+
+.login-success {
+    animation: loginSuccess 1s ease;
+    background-color: #2e7d32 !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+        padding: 30px 20px;
+        margin: 20px auto;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .button-group button {
+        min-width: auto;
+    }
+    
+    .form-container h2 {
+        font-size: 1.6rem;
+    }
+    
+    .form-container label {
+        font-size: 1rem;
+    }
+    
+    .form-container input {
+        font-size: 1rem;
+        padding: 12px;
+    }
 }
