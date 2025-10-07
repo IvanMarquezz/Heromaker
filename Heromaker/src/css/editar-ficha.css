@@ -10,158 +10,409 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Partículas flutuantes */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(182, 1, 1, 0.3);
+    border-radius: 50%;
+    animation: float 15s infinite linear;
 }
 
 /* Navbar */
 nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(180deg, #990000, #590203);
-    padding: 20px 20px 20px 5px; /* top right bottom left → logo mais à esquerda */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    justify-content: center;
+    background: linear-gradient(180deg, #b60101, #750000);
+    padding: 20px;
     width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    animation: navSlideIn 0.8s ease-out;
 }
+
 img.logo-do-site {
     height: 80px;
-    margin-left: 550px;
-}
-img.perfil {
-    height: 60px;
-    cursor: pointer;
-    transition: transform .2s ease;
-}
-img.perfil:hover {
-    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    animation: logoPulse 3s infinite ease-in-out;
 }
 
-/* Container do formulário */
-.form-container {
+/* ======= PAINEL ======= */
+.painel-container {
     background-color: rgba(30, 30, 30, 0.95);
     padding: 40px;
-    border-radius: 12px;
-    width: 950px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    border-radius: 15px;
+    width: 900px;
+    max-width: 95%;
     margin: 40px auto;
-    text-align: left; /* 🔥 alinhamento geral à esquerda */
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    text-align: center;
+    animation: formFadeIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Título */
-.form-container h2 {
+.painel-container h2 {
+    margin-bottom: 30px;
     font-size: 1.8rem;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #ffffff;
+    text-shadow: 0 0 10px rgba(182, 1, 1, 0.5);
+    animation: titleGlow 2s infinite alternate;
 }
 
-/* Grid principal (foto + inputs) */
-.form-grid {
+/* ======= LAYOUT INTERNO ======= */
+.painel-conteudo {
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between;
     gap: 40px;
+    animation: contentSlideIn 1s ease-out 0.3s both;
 }
 
-/* Foto */
-.foto-container {
-    flex: 0 0 180px; /* fixa largura da coluna da foto */
-    text-align: left;
+/* Coluna Esquerda - Perfil */
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
 }
-.foto-placeholder {
-    width: 140px;
-    height: 140px;
-    border: 5px solid #b60101;
+
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    background-color: #d9d9d9;
     border-radius: 50%;
-    margin-bottom: 15px;
-    background: url('../imagens/placeholder.png') center/cover no-repeat, #ffffff33;
+    border: 4px solid #b60101;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(182, 1, 1, 0.3);
+    animation: photoGlow 3s infinite ease-in-out;
+    object-fit: cover;
 }
-.foto-container p {
+
+.foto-perfil:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(182, 1, 1, 0.6);
+}
+
+.btn-editar {
+    background: none;
+    border: 2px solid #b60101;
+    color: white;
     font-size: 0.9rem;
     font-weight: bold;
-}
-
-/* Inputs */
-.inputs-container {
-    flex: 1;
-}
-
-/* Nome + Gênero */
-.input-duplo {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-.input-duplo div {
-    flex: 1;
-}
-
-/* Nível + Raça + Classe (triplo) */
-.input-triplo {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-.input-triplo div {
-    flex: 1;
-}
-
-/* Atributos */
-.atributos {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 40px;
-    margin-top: 40px;
-}
-
-/* Labels e inputs */
-label {
-    font-size: 0.95rem;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 6px;
-}
-input {
-    width: 100%;
-    padding: 14px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background-color: #d9d9d9;
-    color: #000;
-    font-weight: bold;
-}
-
-/* Botões */
-.button-group {
-    display: flex;
-    gap: 25px;
-    margin-top: 30px;
-}
-.button-group button {
-    flex: 1;
-    padding: 16px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    border: none;
     cursor: pointer;
-    transition: 0.3s;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Botão automático */
-.btn-auto {
-    background-color: #1b0a0a;
-    color: white;
-}
-.btn-auto:hover {
-    background-color: #3a0f0f;
+/* Efeito de onda no botão editar */
+.btn-editar::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(182, 1, 1, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
 }
 
-/* Botão gerar ficha */
-button[type="submit"] {
+.btn-editar:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.btn-editar:hover {
+    background-color: rgba(182, 1, 1, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(182, 1, 1, 0.3);
+}
+
+.btn-voltar {
     background-color: #b60101;
     color: white;
+    border: 2px solid white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
-button[type="submit"]:hover {
+
+/* Efeito de onda no botão voltar */
+.btn-voltar::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-voltar:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.btn-voltar:hover {
     background-color: #750000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(182, 1, 1, 0.5);
+}
+
+/* Coluna Direita - Fichas */
+.fichas {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ficha {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #b60101, #8a0101);
+    padding: 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fichaSlideIn 0.6s ease-out both;
+}
+
+/* Animação escalonada para as fichas */
+.ficha:nth-child(1) { animation-delay: 0.4s; }
+.ficha:nth-child(2) { animation-delay: 0.6s; }
+.ficha:nth-child(3) { animation-delay: 0.8s; }
+
+.ficha::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.ficha:hover::before {
+    left: 100%;
+}
+
+.ficha:hover {
+    background: linear-gradient(135deg, #750000, #5a0000);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(182, 1, 1, 0.4);
+}
+
+.icone-ficha {
+    width: 50px;
+    height: 50px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.ficha:hover .icone-ficha {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* ========== ANIMAÇÕES ========== */
+
+/* Animação de entrada da navbar */
+@keyframes navSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de pulsação do logo */
+@keyframes logoPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animação de entrada do painel */
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação do conteúdo */
+@keyframes contentSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animação das fichas */
+@keyframes fichaSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animação de brilho na foto */
+@keyframes photoGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(182, 1, 1, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(182, 1, 1, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(182, 1, 1, 0.3);
+    }
+}
+
+/* Animação do título */
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(182, 1, 1, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(182, 1, 1, 0.8), 0 0 30px rgba(182, 1, 1, 0.6);
+    }
+}
+
+/* Animação das partículas */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Efeito de loading */
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.btn-loading {
+    background: linear-gradient(90deg, #b60101, #750000, #b60101) !important;
+    background-size: 200% 100% !important;
+    animation: loading 1.5s infinite !important;
+}
+
+/* Efeito de sucesso */
+@keyframes successPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(46, 125, 50, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+    }
+}
+
+.success-animation {
+    animation: successPulse 1s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .painel-container {
+        width: 90%;
+        padding: 30px 20px;
+        margin: 20px auto;
+    }
+    
+    .painel-conteudo {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .ficha {
+        padding: 15px;
+    }
+    
+    .icone-ficha {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+    
+    .foto-perfil {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .painel-container h2 {
+        font-size: 1.4rem;
+    }
 }
