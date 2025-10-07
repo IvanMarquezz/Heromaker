@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../imagens/fundo.png');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #990000, #590203);
+    padding: 20px 20px 20px 5px; /* top right bottom left → logo mais à esquerda */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    width: 100%;
+}
+img.logo-do-site {
+    height: 80px;
+    margin-left: 550px;
+}
+img.perfil {
+    height: 60px;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+img.perfil:hover {
+    transform: scale(1.1);
+}
+
+/* Container do formulário */
+.form-container {
+    background-color: rgba(30, 30, 30, 0.95);
+    padding: 53px 40px;
+    border-radius: 12px;
+    width: 950px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    margin: 40px auto;
+    text-align: left; /* 🔥 alinhamento geral à esquerda */
+}
+
+/* Título */
+.form-container h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+/* Grid principal (foto + inputs) */
+.form-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* Foto */
+.foto-container {
+    flex: 0 0 180px; /* fixa largura da coluna da foto */
+    text-align: left;
+}
+.foto-placeholder {
+    width: 140px;
+    height: 140px;
+    border: 5px solid #b60101;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    background: url('../imagens/placeholder.png') center/cover no-repeat, #ffffff33;
+}
+.foto-container p {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Inputs */
+.inputs-container {
+    flex: 1;
+}
+
+/* Nome + Gênero */
+.input-duplo {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.input-duplo div {
+    flex: 1;
+}
+
+/* Nível + Raça + Classe (triplo) */
+.input-triplo {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.input-triplo div {
+    flex: 1;
+}
+
+/* Atributos */
+.atributos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Labels e inputs */
+label {
+    font-size: 0.95rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #d9d9d9;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Botões */
+.button-group {
+    display: flex;
+    gap: 25px;;
+    position: relative;  /* permite mover o bloco sem afetar o layout do container */
+    top: 40px;           /* ajusta o quanto os botões descem, sem aumentar o container */
+
+}
+
+.button-group button {
+    flex: 1;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Botão automático */
+.btn-auto {
+    background-color: #1b0a0a;
+    color: white;
+}
+.btn-auto:hover {
+    background-color: #3a0f0f;
+}
+
+/* Botão gerar ficha */
+button[type="submit"] {
+    background-color: #b60101;
+    color: white;
+}
+button[type="submit"]:hover {
+    background-color: #750000;
+}

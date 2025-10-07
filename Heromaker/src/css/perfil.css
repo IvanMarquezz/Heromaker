@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../imagens/fundo.png');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, #b60101, #750000);
+    padding: 20px;
+    width: 100%;
+}
+img.logo-do-site {
+    height: 80px;
+}
+
+/* ======= PAINEL ======= */
+.painel-container {
+    background-color: rgba(42, 42, 42, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    width: 900px;
+    max-width: 95%;
+    margin-top: 50px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+.painel-container h2 {
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* ======= LAYOUT INTERNO ======= */
+.painel-conteudo {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Coluna Esquerda - Perfil */
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.btn-editar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-voltar {
+    background-color: #b60101;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-voltar:hover {
+    background-color: #750000;
+}
+
+/* Coluna Direita - Fichas */
+.fichas {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ficha {
+    display: flex;
+    align-items: center;
+    background-color: #b60101;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ficha:hover {
+    background-color: #750000;
+}
+
+.icone-ficha {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 20px;
+}
