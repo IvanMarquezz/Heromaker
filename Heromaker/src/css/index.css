@@ -10,6 +10,25 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Partículas flutuantes */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(182, 1, 1, 0.3);
+    border-radius: 50%;
+    animation: float 15s infinite linear;
 }
 
 /* Navbar */
@@ -18,28 +37,38 @@ nav {
     justify-content: space-between;
     align-items: center;
     background: linear-gradient(180deg, #990000, #590203);
-    padding: 20px 20px 20px 5px; /* top right bottom left → logo mais à esquerda */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     width: 100%;
+    animation: navSlideIn 0.8s ease-out;
+    position: relative;
 }
-img.logo-do-site {
+
+/* Logo centralizada */
+.logo-do-site {
     height: 80px;
-    margin-left: 550px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    animation: logoPulse 3s infinite ease-in-out;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* Imagem de perfil na Navbar - ATUALIZADO */
-img.perfil {
-    height: 60px; /* Altura da imagem */
-    width: 60px; /* Largura deve ser igual à altura */
-    border-radius: 50%; /* Esta é a propriedade que cria o círculo */
-    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
-    border: 3px solid #fff; /* Opcional: adiciona uma borda branca */
+.perfil-link {
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.perfil {
+    height: 60px;
     cursor: pointer;
-    transition: transform .2s ease;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
 }
 
-img.perfil:hover {
+.perfil:hover {
     transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
 }
 
 /* Container do formulário */
@@ -51,6 +80,9 @@ img.perfil:hover {
     box-shadow: 0 0 20px rgba(0,0,0,0.6);
     margin: 40px auto;
     text-align: left;
+    animation: formFadeIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Título */
@@ -60,6 +92,7 @@ img.perfil:hover {
     text-align: center;
     margin-bottom: 30px;
     color: #ffffff;
+    text-shadow: 0 0 10px rgba(182, 1, 1, 0.5);
 }
 
 /* Grid principal (foto + inputs) */
@@ -67,25 +100,45 @@ img.perfil:hover {
     display: flex;
     align-items: flex-start;
     gap: 40px;
+    animation: contentSlideIn 1s ease-out 0.3s both;
 }
 
-/* Foto */
+/* Foto Container */
 .foto-container {
     flex: 0 0 180px;
     text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
+
 .foto-placeholder {
     width: 140px;
     height: 140px;
-    border: 5px solid #d60101;
+    border: 5px solid #b60101;
     border-radius: 50%;
+    margin-bottom: 15px;
+    background: #ffffff33;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(182, 1, 1, 0.3);
+    animation: photoGlow 3s infinite ease-in-out;
     object-fit: cover;
-    background-color: #333;
+}
+
+.foto-container:hover .foto-placeholder {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(182, 1, 1, 0.6);
 }
 
 .foto-container p {
     font-size: 0.9rem;
     font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.foto-container:hover p {
+    color: #b60101;
+    text-shadow: 0 0 8px rgba(182, 1, 1, 0.5);
 }
 
 /* Inputs */
@@ -98,7 +151,9 @@ img.perfil:hover {
     display: flex;
     gap: 40px;
     margin-bottom: 40px;
+    animation: inputRowSlide 0.6s ease-out 0.5s both;
 }
+
 .input-duplo div {
     flex: 1;
 }
@@ -108,7 +163,9 @@ img.perfil:hover {
     display: flex;
     gap: 40px;
     margin-bottom: 40px;
+    animation: inputRowSlide 0.6s ease-out 0.7s both;
 }
+
 .input-triplo div {
     flex: 1;
 }
@@ -119,6 +176,7 @@ img.perfil:hover {
     grid-template-columns: repeat(5, 1fr);
     gap: 40px;
     margin-top: 40px;
+    animation: atributosSlide 0.8s ease-out 0.9s both;
 }
 
 /* Labels e inputs */
@@ -127,7 +185,9 @@ label {
     font-weight: bold;
     display: block;
     margin-bottom: 6px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
+
 input {
     width: 100%;
     padding: 14px;
@@ -137,6 +197,19 @@ input {
     background-color: #d9d9d9;
     color: #000;
     font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input:focus {
+    box-shadow: 0 0 0 2px #b60101, 0 0 15px rgba(182, 1, 1, 0.4);
+    transform: translateY(-2px);
+    background-color: #e8e8e8;
+}
+
+input:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Botões */
@@ -144,7 +217,9 @@ input {
     display: flex;
     gap: 25px;
     margin-top: 30px;
+    animation: buttonGroupSlide 0.6s ease-out 1.1s both;
 }
+
 .button-group button {
     flex: 1;
     padding: 16px;
@@ -153,7 +228,28 @@ input {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de onda nos botões */
+.button-group button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.button-group button:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
 /* Botão automático */
@@ -161,8 +257,11 @@ input {
     background-color: #1b0a0a;
     color: white;
 }
+
 .btn-auto:hover {
     background-color: #3a0f0f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Botão gerar ficha */
@@ -170,7 +269,227 @@ button[type="submit"] {
     background-color: #b60101;
     color: white;
 }
+
 button[type="submit"]:hover {
     background-color: #750000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(182, 1, 1, 0.5);
 }
 
+/* Mensagem IA */
+#ia-message {
+    text-align: center;
+    margin-top: 15px;
+    color: #ccc;
+    font-style: italic;
+    animation: messageFade 2s ease-in-out;
+}
+
+/* ========== ANIMAÇÕES ========== */
+
+/* Animação de entrada da navbar */
+@keyframes navSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de pulsação do logo */
+@keyframes logoPulse {
+    0% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.05);
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Animação de entrada do formulário */
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação do conteúdo */
+@keyframes contentSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animação das linhas de input */
+@keyframes inputRowSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação dos atributos */
+@keyframes atributosSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação dos botões */
+@keyframes buttonGroupSlide {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de brilho na foto */
+@keyframes photoGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(182, 1, 1, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(182, 1, 1, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(182, 1, 1, 0.3);
+    }
+}
+
+/* Animação das partículas */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Animação da mensagem */
+@keyframes messageFade {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de loading */
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.btn-loading {
+    background: linear-gradient(90deg, #b60101, #750000, #b60101) !important;
+    background-size: 200% 100% !important;
+    animation: loading 1.5s infinite !important;
+}
+
+/* Efeito de sucesso no upload da foto */
+@keyframes photoUploadSuccess {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(46, 125, 50, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+    }
+}
+
+.photo-upload-success {
+    animation: photoUploadSuccess 1s ease;
+    border-color: #2e7d32 !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .form-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .foto-container {
+        flex: none;
+        text-align: center;
+    }
+    
+    .input-duplo,
+    .input-triplo {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .atributos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .logo-do-site {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .perfil-link {
+        margin-left: 0;
+    }
+}
