@@ -16,7 +16,7 @@ body {
 nav {
     display: flex;
     justify-content: center;
-    background: linear-gradient(180deg, #b60101, #750000); /* Vermelho */
+    background: linear-gradient(180deg, #b60101, #750000);
     padding: 20px;
     width: 100%;
 }
@@ -46,6 +46,11 @@ main h2 {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  width: 220px;
 }
 
 .sistemas-container {
@@ -55,55 +60,58 @@ main h2 {
   flex-wrap: wrap;
 }
 
+/* Links dentro dos cards */
+.sistema-link {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 /* Primeiro card (Ordem Paranormal) - Verde */
-.sistemas-container .sistema:nth-child(1) {
+.sistema.ordem-paranormal {
   background-color: #2d9800; /* Verde */
 }
 
-.sistemas-container .sistema:nth-child(1) img {
+.sistema.ordem-paranormal img {
   border: 3px solid #1d5802; /* Borda verde mais escura */
 }
 
-.sistemas-container .sistema:nth-child(1):hover {
+.sistema.ordem-paranormal:hover {
   background-color: #1d5802; /* Verde mais escuro no hover */
 }
 
-/* Segundo card (D&D) - Mantém como estava (vermelho) */
-.sistemas-container .sistema:nth-child(2) {
+/* Segundo card (D&D) - Vermelho */
+.sistema.dnd {
   background-color: #b60101; /* Vermelho */
 }
 
-.sistemas-container .sistema:nth-child(2) img {
+.sistema.dnd img {
   border: 3px solid #750000; /* Borda vermelha */
 }
 
-.sistemas-container .sistema:nth-child(2):hover {
+.sistema.dnd:hover {
   background-color: #750000; /* Vermelho mais escuro no hover */
 }
 
 /* Terceiro card (Cyberpunk) - Roxo */
-.sistemas-container .sistema:nth-child(3) {
+.sistema.cyberpunk {
   background-color: #960098; /* Roxo */
 }
 
-.sistemas-container .sistema:nth-child(3) img {
+.sistema.cyberpunk img {
   border: 3px solid #560258; /* Borda roxa mais escura */
   object-position: left center; /* foca a parte esquerda da imagem */
 }
 
-.sistemas-container .sistema:nth-child(3):hover {
+.sistema.cyberpunk:hover {
   background-color: #560258; /* Roxo mais escuro no hover */
 }
 
-/* Estilos gerais para os cards */
-.sistema {
-  border-radius: 10px;
-  padding: 10px;
-  transition: 0.3s;
-  cursor: pointer;
-  width: 220px;
-}
-
+/* Estilos gerais para as imagens e textos */
 .sistema img {
   width: 100%;
   height: 300px;
