@@ -12,16 +12,36 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar - Vermelha */
+/* Navbar - Vermelha - ATUALIZADA */
 nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Alterado para space-between */
+    align-items: center;
     background: linear-gradient(180deg, #b60101, #750000);
-    padding: 20px;
+    padding: 20px 20px 20px 5px; /* top right bottom left → logo mais à esquerda */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Adicionada sombra */
     width: 100%;
 }
+
 img.logo-do-site {
     height: 80px;
+    margin-left: 550px; /* Adicionada margem à esquerda */
+}
+
+/* Imagem de perfil na Navbar - ATUALIZADO */
+img.perfil {
+    height: 60px; /* Altura da imagem */
+    width: 60px; /* Largura deve ser igual à altura */
+    border-radius: 50%; /* Esta é a propriedade que cria o círculo */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    border: 3px solid #fff; /* Opcional: adiciona uma borda branca */
+    cursor: pointer;
+    transition: transform .2s ease;
+    margin-right: 20px; /* Adicionada margem à direita */
+}
+
+img.perfil:hover {
+    transform: scale(1.1);
 }
 
 /* ======= CONTEÚDO PRINCIPAL ======= */
@@ -157,4 +177,14 @@ footer {
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
+}
+
+/* Adicione ao seu arquivo home.css para o efeito hover na logo */
+nav a {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+nav a:hover {
+  transform: scale(1.05);
 }
