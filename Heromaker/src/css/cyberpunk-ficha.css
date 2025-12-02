@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('../imagens/fundoverde.png');
+    background-image: url('../imagens/fundoroxo.png');
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
@@ -17,7 +17,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(180deg, #2d9800, #1d5802);
+    background: linear-gradient(180deg, #960098, #560258);
     padding: 20px 20px 20px 5px; /* top right bottom left → logo mais à esquerda */
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     width: 100%;
@@ -77,7 +77,7 @@ img.perfil:hover {
 .foto-placeholder {
     width: 140px;
     height: 140px;
-    border: 5px solid #2d9800;
+    border: 5px solid #960098;
     border-radius: 50%;
     object-fit: cover;
     background-color: #333;
@@ -159,18 +159,18 @@ input {
 
 /* Botão automático */
 .btn-auto {
-    background-color: #1d5802;
+    background-color: #560258;
     color: white;
 }
 .btn-auto:hover {
-    background-color: #143f01;
+    background-color: #3d013e;
 }
 
 /* Botão gerar ficha */
 button[type="submit"] {
-    background-color: #2d9800;
+    background-color: #960098;
     color: white;
 }
 button[type="submit"]:hover {
-    background-color: #1d5802;
+    background-color: #560258;
 }
