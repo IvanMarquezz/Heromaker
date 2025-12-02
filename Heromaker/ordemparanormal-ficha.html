@@ -1,99 +1,176 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha de Ordem Paranormal</title>
-    <link rel="stylesheet" href="src/css/ordemparanormal-ficha.css">
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../imagens/fundoverde.png');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
-<body>
-    <!-- ▼▼▼ SEÇÃO DA NAVBAR ATUALIZADA ▼▼▼ -->
-    <nav>
-        <img src="src/imagens/heromaker2.svg" alt="Logo do site" class="logo-do-site">
-        <a href="perfil.html" class="perfil-link">
-            <!-- A imagem de perfil agora tem um ID para ser controlada pelo JS -->
-            <img id="nav-profile-pic" src="src/imagens/perfil.svg" alt="Perfil" class="perfil">
-        </a>
-    </nav>
-    <!-- ▲▲▲ FIM DA SEÇÃO ATUALIZADA ▲▲▲ -->
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #2d9800, #1d5802);
+    padding: 20px 20px 20px 5px; /* top right bottom left → logo mais à esquerda */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    width: 100%;
+}
+img.logo-do-site {
+    height: 80px;
+    margin-left: 550px;
+}
 
-    <main>
-        <div class="form-container">
-            <h2>FICHA DE PERSONAGEM - ORDEM PARANORMAL</h2>
-            <form>
-                <div class="form-grid">
-                    
-                    <div id="foto-container-clicavel" class="foto-container">
-                        <input type="file" id="foto-upload" accept="image/*" style="display: none;">
-                        <img id="personagem-imagem" src="" alt="Foto do personagem" class="foto-placeholder">
-                        <p id="texto-adicionar-foto">ADICIONE UMA FOTO</p>
-                    </div>
+/* Imagem de perfil na Navbar - ATUALIZADO */
+img.perfil {
+    height: 60px; /* Altura da imagem */
+    width: 60px; /* Largura deve ser igual à altura */
+    border-radius: 50%; /* Esta é a propriedade que cria o círculo */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    border: 3px solid #fff; /* Opcional: adiciona uma borda branca */
+    cursor: pointer;
+    transition: transform .2s ease;
+}
 
-                    <div class="inputs-container">
-                        <div class="input-duplo">
-                            <div>
-                                <label for="nome">Nome do Personagem</label>
-                                <input type="text" id="nome" name="nome" required>
-                            </div>
-                            <div>
-                                <label for="genero">Gênero</label>
-                                <input type="text" id="genero" name="genero" required>
-                            </div>
-                        </div>
+img.perfil:hover {
+    transform: scale(1.1);
+}
 
-                        <div class="input-triplo">
-                            <div>
-                                <label for="nivel">Nível/label>
-                                <input type="number" id="nivel" name="nivel" min="1" max="20" required>
-                            </div>
-                            <div>
-                                <label for="raca">Origem</label>
-                                <input type="text" id="raca" name="raca" required>
-                            </div>
-                            <div>
-                                <label for="classe">Trilha</label>
-                                <input type="text" id="classe" name="classe" required>
-                            </div>
-                        </div>
+/* Container do formulário */
+.form-container {
+    background-color: rgba(30, 30, 30, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    width: 950px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    margin: 40px auto;
+    text-align: left;
+}
 
-                        <div class="atributos">
-                            <div>
-                                <label for="forca">Força</label>
-                                <input type="number" id="forca" name="forca">
-                            </div>
-                            <div>
-                                <label for="defesa">Presença</label>
-                                <input type="number" id="defesa" name="defesa">
-                            </div>
-                            <div>
-                                <label for="inteligencia">Intelecto</label>
-                                <input type="number" id="inteligencia" name="inteligencia">
-                            </div>
-                            <div>
-                                <label for="agilidade">Agilidade</label>
-                                <input type="number" id="agilidade" name="agilidade">
-                            </div>
-                            <div>
-                                <label for="carisma">Vigor</label>
-                                <input type="number" id="carisma" name="carisma">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+/* Título */
+.form-container h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
 
-                <div class="button-group">
-                    <button type="button" class="btn-auto">Preencher Automaticamente</button>
-                    <button type="submit">Gerar Ficha</button>
-                </div>
-                
-                <p id="ia-message" style="text-align: center; margin-top: 15px; color: #ccc;"></p>
+/* Grid principal (foto + inputs) */
+.form-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
 
-            </form>
-        </div>
-    </main>
+/* Foto */
+.foto-container {
+    flex: 0 0 180px;
+    text-align: left;
+}
+.foto-placeholder {
+    width: 140px;
+    height: 140px;
+    border: 5px solid #2d9800;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #333;
+}
 
-    <script src="index.js"></script>
-</body>
-</html>
+.foto-container p {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Inputs */
+.inputs-container {
+    flex: 1;
+}
+
+/* Nome + Gênero */
+.input-duplo {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.input-duplo div {
+    flex: 1;
+}
+
+/* Nível + Raça + Classe (triplo) */
+.input-triplo {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.input-triplo div {
+    flex: 1;
+}
+
+/* Atributos */
+.atributos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Labels e inputs */
+label {
+    font-size: 0.95rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #d9d9d9;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Botões */
+.button-group {
+    display: flex;
+    gap: 25px;
+    position: relative;  /* permite mover o bloco sem afetar o layout do container */
+    top: 40px;           /* ajusta o quanto os botões descem, sem aumentar o container */
+}
+.button-group button {
+    flex: 1;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Botão automático */
+.btn-auto {
+    background-color: #1d5802;
+    color: white;
+}
+.btn-auto:hover {
+    background-color: #143f01;
+}
+
+/* Botão gerar ficha */
+button[type="submit"] {
+    background-color: #2d9800;
+    color: white;
+}
+button[type="submit"]:hover {
+    background-color: #1d5802;
+}
