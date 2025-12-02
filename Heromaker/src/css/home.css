@@ -12,11 +12,11 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar */
+/* Navbar - Vermelha */
 nav {
     display: flex;
     justify-content: center;
-    background: linear-gradient(180deg, #b60101, #750000);
+    background: linear-gradient(180deg, #b60101, #750000); /* Vermelho */
     padding: 20px;
     width: 100%;
 }
@@ -55,8 +55,48 @@ main h2 {
   flex-wrap: wrap;
 }
 
+/* Primeiro card (Ordem Paranormal) - Verde */
+.sistemas-container .sistema:nth-child(1) {
+  background-color: #2d9800; /* Verde */
+}
+
+.sistemas-container .sistema:nth-child(1) img {
+  border: 3px solid #1d5802; /* Borda verde mais escura */
+}
+
+.sistemas-container .sistema:nth-child(1):hover {
+  background-color: #1d5802; /* Verde mais escuro no hover */
+}
+
+/* Segundo card (D&D) - Mantém como estava (vermelho) */
+.sistemas-container .sistema:nth-child(2) {
+  background-color: #b60101; /* Vermelho */
+}
+
+.sistemas-container .sistema:nth-child(2) img {
+  border: 3px solid #750000; /* Borda vermelha */
+}
+
+.sistemas-container .sistema:nth-child(2):hover {
+  background-color: #750000; /* Vermelho mais escuro no hover */
+}
+
+/* Terceiro card (Cyberpunk) - Roxo */
+.sistemas-container .sistema:nth-child(3) {
+  background-color: #960098; /* Roxo */
+}
+
+.sistemas-container .sistema:nth-child(3) img {
+  border: 3px solid #560258; /* Borda roxa mais escura */
+  object-position: left center; /* foca a parte esquerda da imagem */
+}
+
+.sistemas-container .sistema:nth-child(3):hover {
+  background-color: #560258; /* Roxo mais escuro no hover */
+}
+
+/* Estilos gerais para os cards */
 .sistema {
-  background-color: #b60101;
   border-radius: 10px;
   padding: 10px;
   transition: 0.3s;
@@ -69,11 +109,6 @@ main h2 {
   height: 300px;
   object-fit: cover;
   border-radius: 8px;
-  border: px solid #750000;
-}
-
-.sistema:nth-child(3) img {
-  object-position: left center; /* foca a parte esquerda da imagem */
 }
 
 .sistema span {
@@ -85,12 +120,11 @@ main h2 {
 
 .sistema:hover {
   transform: scale(1.05);
-  background-color: #750000;
 }
 
 /* ======= RODAPÉ ======= */
 footer {
-  background-color: #b60101;
+  background-color: #b60101; /* Vermelho */
   margin-top: 80px;
   padding: 40px 562px;
   display: flex;
