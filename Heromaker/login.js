@@ -34,14 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginMessage.textContent = "✅ Login realizado com sucesso!";
                 loginMessage.style.color = "green";
 
-                // --- ATUALIZAÇÃO IMPORTANTE ---
-                // Salva o e-mail, nome e a foto do usuário na sessão do navegador
+                // Salva os dados do usuário na sessão
                 sessionStorage.setItem("usuario", email);
                 sessionStorage.setItem("userName", result.nome);
                 sessionStorage.setItem("userPhoto", result.foto_perfil);
 
                 setTimeout(() => {
-                    window.location.href = "index.html";
+                    // ▼▼▼ REDIRECIONA PARA A HOME (MENU DE TEMAS) ▼▼▼
+                    window.location.href = "home.html";
                 }, 1000);
             } else {
                 loginMessage.textContent = "❌ " + result.message;
@@ -49,9 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (err) {
             console.error("Erro de conexão:", err);
-            loginMessage.textContent = "⚠️ Erro de conexão com o servidor. Verifique se o backend (Python) está rodando.";
+            loginMessage.textContent = "⚠️ Erro de conexão com o servidor.";
             loginMessage.style.color = "orange";
         }
     });
 });
-
