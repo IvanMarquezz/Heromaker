@@ -1,5 +1,3 @@
-/*
-
 // Garante que o código só vai rodar depois que o HTML da página estiver pronto.
 document.addEventListener('DOMContentLoaded', async () => {
     
@@ -105,5 +103,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         fichasContainer.innerHTML = '<span>Ocorreu um erro ao buscar suas fichas. O servidor pode estar offline.</span>';
     }
 });
-
-*/
