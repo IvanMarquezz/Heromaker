@@ -1,5 +1,3 @@
-/*
-
 // --- 1. SEGURANÇA: VERIFICA SE O USUÁRIO ESTÁ LOGADO ---
 const usuarioLogado = sessionStorage.getItem('usuario');
 
@@ -134,5 +132,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-*/
