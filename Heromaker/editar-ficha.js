@@ -1,4 +1,3 @@
-/*
 
 // editar-ficha.js
 document.addEventListener('DOMContentLoaded', async () => {
@@ -69,4 +68,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     // A lógica dos outros botões (foto, preencher auto) pode ser copiada do index.js
 });
 
-*/
